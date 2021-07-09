@@ -94,5 +94,15 @@ RSpec.describe RealEstate, type: :model do
       real_estate.city = (0...65).map { (65 + rand(26)).chr }.join
       expect(real_estate).to_not be_valid
     end
+
+    it "external_number is valid if have Only alphanumerics and dash (-)" do
+      real_estate.external_number = "3C4DEF8z-32a"
+      expect(real_estate).to be_valid
+    end
+
+    it "external_number is invalid if  have spece, Only alphanumerics and dash (-)" do
+      real_estate.external_number = "3C4D F8z-32a"
+      expect(real_estate).to_not be_valid
+    end
   end
 end
