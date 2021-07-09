@@ -1,24 +1,60 @@
-# README
+ Real Estate Api
+====================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  This project is  Ruby Developer Challenge  for api
+  
+## Getting Started 
+---------------------
+### Requirements
+  * **Ruby** Version: **'2.7.1'**
+  * **Rails** Version: **'6.1.4'**
+  * Bundle Recomentded **2.2**
+  * PostgreSQL 12.3
+  * rvm 1.29.10
 
-Things you may want to cover:
+ 
 
-* Ruby version
+### Installation
 
-* System dependencies
+#### Getting Started
+Start by Cloning the repo via console:
+` $ git clone git@github.com:philip13/real-estate-api.git`
+ 
+Now that you have the project go to the repo:
+`$ cd real-estate-api`
 
-* Configuration
+> Make sure you have rvm installed, if you don't have pleae visit  [rvm install](https://rvm.io/rvm/install)
+> Make sure you have ruby-2.7.1, list all your rails version `$ rvm list` and use it with:
+`$ rvm use 2.7.1`
 
-* Database creation
+> If you don't have ruby-2.7.1 you could install it:
+`$ rvm install 2.7.1`
 
-* Database initialization
+> Install bundler if you don't have yet [install bundler](https://bundler.io/) or run the next command `$ gem install bundler`
 
-* How to run the test suite
+Install all dependencies in your Gemfile:
+`$ bundle install`
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+#### DB Setup
+
+##### Create you local data base:
+```
+  $ rake db:create
+  $ rake db:migrate
+```
+
+##### Autopopulate the database
+`$ rake db:seed`
+
+#### Development
+
+##### Run your local server:
+
+`$ rails s`
+> By default you can visit http://localhost:3000/ to make sure your local server is running
+
+
+##### Run Test:
+`$ exec rspec `
