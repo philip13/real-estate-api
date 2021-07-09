@@ -8,12 +8,11 @@
 ### Requirements
   * **Ruby** Version: **'2.7.1'**
   * **Rails** Version: **'6.1.4'**
-  * Bundle Recomentded **2.2**
+  * Bundle Recomentded **1.17.3**
   * PostgreSQL 12.3
   * rvm 1.29.10
 
  
-
 ### Installation
 
 #### Getting Started
@@ -55,6 +54,16 @@ Install all dependencies in your Gemfile:
 `$ rails s`
 > By default you can visit http://localhost:3000/ to make sure your local server is running
 
+##### Real state methods to CRUD records
+
+| Prefix | Verb | URI Pattern | Controller#Action |
+| ----------- | ----------- | ----------- | ----------- |
+| api_v1_real_estates | GET | /api/v1/real_estates(.:format) | api/v1/real_estates#index |
+|   | POST |  /api/v1/real_estates(.:format) | api/v1/real_estates#create |
+| api_v1_real_estate | GET | /api/v1/real_estates/:id(.:format) | api/v1/real_estates#show |
+|     | PATCH | /api/v1/real_estates/:id(.:format) | api/v1/real_estates#update |
+|  | PUT  |  /api/v1/real_estates/:id(.:format) | api/v1/real_estates#update |
+|  | DELETE | /api/v1/real_estates/:id(.:format) | api/v1/real_estates#destroy |
 
 ##### Run Test:
 `$ exec rspec `
