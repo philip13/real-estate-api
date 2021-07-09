@@ -2,6 +2,7 @@
 ====================
 
   This project is  Ruby Developer Challenge  for api
+  [API Live Demo](https://real-estate-api-by-phillip.herokuapp.com/)
   
 ## Getting Started 
 ---------------------
@@ -54,7 +55,7 @@ Install all dependencies in your Gemfile:
 `$ rails s`
 > By default you can visit http://localhost:3000/ to make sure your local server is running
 
-##### Real state methods to CRUD records
+##### Real Estate methods to CRUD records
 
 | Prefix | Verb | URI Pattern | Controller#Action |
 | ----------- | ----------- | ----------- | ----------- |
