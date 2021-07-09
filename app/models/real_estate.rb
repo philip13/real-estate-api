@@ -5,13 +5,28 @@ class RealEstate < ApplicationRecord
   validates :external_number, length: {maximum: 12 }
   validates :city, length: { maximum: 64}
   validates :internal_number, presence: true, if: :required_internal_num?
+  validate :bathrooms, :bathrooms_can_be_zero, unless: :bathrooms_nil?
+
 
   validates :real_state_type, :inclusion => {:in => REAL_STATE_OPTIONS}
 
   validates_format_of :external_number,  :with => /\A[\d\w\-]+\Z/im
   # validates_format_of :internal_number,  :with => /\A[\d\w\-\s]+\Z/im
+
+  def bathrooms_nil?
+    self.bathrooms.nil?
+  end
   
   def required_internal_num?
     self.real_state_type == 'department' || self.real_state_type == 'commercial_ground'
   end
+
+  def bathrooms_can_be_zero
+    if (self.real_state_type == 'land' || self.real_state_type == 'commercial_ground') && self.bathrooms < 0
+      errors.add(:bathrooms, "must be greater than or equal to zero")
+    elsif (self.real_state_type == 'house' || self.real_state_type == 'department') && (self.bathrooms < 1)
+      errors.add(:bathrooms, "must be greater than or equal to 1")
+    end
+  end
+
 end
