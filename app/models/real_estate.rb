@@ -9,6 +9,7 @@ class RealEstate < ApplicationRecord
 
 
   validates :real_state_type, :inclusion => {:in => REAL_STATE_OPTIONS}
+  validates :country, :inclusion => { :in => Country.all.map(&:alpha2) }
 
   validates_format_of :external_number,  :with => /\A[\d\w\-]+\Z/im
   # validates_format_of :internal_number,  :with => /\A[\d\w\-\s]+\Z/im
