@@ -43,6 +43,11 @@ RSpec.describe RealEstate, type: :model do
       expect(real_estate).to_not be_valid
     end
 
+    it "country is not valid if is greater that 2" do
+      real_estate.country = Faker::Address.country_code_long #=> "ITA"
+      expect(real_estate).to_not be_valid
+    end
+
     it "is not valid without a rooms" do
       real_estate.rooms = nil
       expect(real_estate).to_not be_valid
