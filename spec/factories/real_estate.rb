@@ -7,7 +7,7 @@ FactoryBot.define do
 
     neighborhood {"neighborhood"}
     city { Faker::Address.city}
-    country { Faker::Address.country }
+    country { Faker::Address.country_code }
     rooms { 4 }
     bathrooms { 2}
     # Add additional fields as required via your User model
