@@ -67,4 +67,4 @@ Install all dependencies in your Gemfile:
 |  | DELETE | /api/v1/real_estates/:id(.:format) | api/v1/real_estates#destroy |
 
 ##### Run Test:
-`$ exec rspec `
+`$ rspec `
