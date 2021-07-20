@@ -105,8 +105,25 @@ RSpec.describe RealEstate, type: :model do
       expect(real_estate).to be_valid
     end
 
-    it "external_number is invalid if  have spece, Only alphanumerics and dash (-)" do
-      real_estate.external_number = "3C4D F8z-32a"
+    it "internal_number is valid if have Only alphanumerics, spaces and dash (-)" do
+      real_estate.real_state_type = 'commercial_ground'
+      real_estate.internal_number = "3C 4D EF8z-32a"
+      expect(real_estate).to be_valid
+    end
+
+    it "internal_number is not valid if have Only other charater aditional of alphanumerics, spaces and dash (-)" do
+      real_estate.real_state_type = 'commercial_ground'
+      real_estate.internal_number = "3C,4D EF8z-32a"
+      expect(real_estate).to_not be_valid
+    end
+
+    it "comments is can fill" do
+      real_estate.internal_number = "Some Coments"
+      expect(real_estate).to be_valid
+    end
+    
+    it "comments is not valid with length greater that 128" do
+      real_estate.comments = (0...129).map { (65 + rand(26)).chr }.join
       expect(real_estate).to_not be_valid
     end
   end
