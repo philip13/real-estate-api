@@ -32,19 +32,43 @@ RSpec.describe "/api/v1/api_v1_real_estates", type: :request do
     {}
   }
 
+  let(:real_estate) { create(:real_estate) }
+
   describe "GET /index" do
     it "renders a successful response" do
-      RealEstate.create! valid_attributes
+      _real_estate = real_estate
       get api_v1_real_estates_url, headers: valid_headers, as: :json
-      expect(response).to be_successful
+      json = JSON.parse(response.body)
+
+      expect( json ).to include({"city"=>"#{_real_estate.city}", "country"=>"#{_real_estate.country}","id"=>_real_estate.id, "name"=> "#{_real_estate.name}", "real_state_type"=> "#{_real_estate.real_state_type}"})
+    end
+
+    it "renders a successful response body not include" do
+      _real_estate = real_estate
+      get api_v1_real_estates_url, headers: valid_headers, as: :json
+
+      expect( response.body ).to_not include("comments")
+      expect( response.body ).to_not include("bathrooms")
+      expect( response.body ).to_not include("rooms")
+      expect( response.body ).to_not include("neighborhood")
+      expect( response.body ).to_not include("internal_number")
+      expect( response.body ).to_not include("external_number")
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      api_v1_real_estate = RealEstate.create! valid_attributes
-      get api_v1_real_estate_url(api_v1_real_estate), as: :json
+      _real_estate = real_estate
+      get api_v1_real_estate_url(_real_estate), as: :json
       expect(response).to be_successful
+    end
+
+    it "renders a successful response body include " do
+      _real_estate = real_estate
+      
+      get api_v1_real_estate_url(_real_estate), as: :json
+      json = JSON.parse(response.body)
+      expect( json ).to include({"city"=>"#{_real_estate.city}", "country"=>"#{_real_estate.country}","id"=>_real_estate.id, "name"=> "#{_real_estate.name}", "real_state_type"=> "#{_real_estate.real_state_type}", "comments"=> _real_estate.comments, "bathrooms"=>_real_estate.bathrooms, "rooms"=>_real_estate.rooms, "neighborhood"=>_real_estate.neighborhood, "internal_number"=>_real_estate.internal_number, "external_number"=>_real_estate.external_number})
     end
   end
 
