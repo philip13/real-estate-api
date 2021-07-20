@@ -40,7 +40,7 @@ RSpec.describe "/api/v1/api_v1_real_estates", type: :request do
       get api_v1_real_estates_url, headers: valid_headers, as: :json
       json = JSON.parse(response.body)
 
-      expect( json ).to include({"city"=>"#{_real_estate.city}", "country"=>"#{_real_estate.country}","id"=>_real_estate.id, "name"=> "#{_real_estate.name}", "real_state_type"=> "#{_real_estate.real_state_type}"})
+      expect( json ).to include({"city"=>"#{_real_estate.city}", "country"=>"#{_real_estate.country}","id"=>_real_estate.id, "name"=> "#{_real_estate.name}"})
     end
 
     it "renders a successful response body not include" do
@@ -142,9 +142,10 @@ RSpec.describe "/api/v1/api_v1_real_estates", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested api_v1_real_estate" do
-      api_v1_real_estate = RealEstate.create! valid_attributes
+      # api_v1_real_estate = RealEstate.create! valid_attributes
+      _real_estate = real_estate
       expect {
-        delete api_v1_real_estate_url(api_v1_real_estate), headers: valid_headers, as: :json
+        delete api_v1_real_estate_url(_real_estate), headers: valid_headers, as: :json
       }.to change(RealEstate, :count).by(-1)
     end
   end
